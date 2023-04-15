@@ -13,7 +13,7 @@ ul{
 	display: flex;
 }
 
-li{
+nav>ul>li{
 	padding: 2vw;
 }
 
@@ -138,10 +138,34 @@ footer{
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-
 }
-
+.log{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: start;
+}
+.log>div{
+	display: flex;
+	gap: 90%;
+	margin-left: 3%;
+}
 .div_foot{
 	display: flex;
-	justify-content: space-around;
+	height: auto;
+	width: 60%;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+.div_foot>ul{
+	display: inline;
+	padding: 0% 8%;
+}
+.div_foot>ul>li{
+	margin: 15%;
+}
+
+li>p{
+	font-weight: 600;
+	font-size: 20px;
 }
