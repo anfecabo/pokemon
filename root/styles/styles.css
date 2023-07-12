@@ -70,11 +70,6 @@ button>a{
 	font-weight: 500;
 }
 
-button:hover{
-	cursor: pointer;
-	color: #306BB3;
-}
-
 
 section{
 	width: 100%;

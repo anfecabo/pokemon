@@ -23,6 +23,7 @@ a{
 	width: 500;
 	text-decoration: none;
 }
+/*Pone underline el link de la página actual*/
 #under{
 	text-decoration: underline;
 }
@@ -79,61 +80,65 @@ section{
 	width: 100%;
 	height: 860px;
 	display: flex;
+	text-align: center;	
 	justify-content: space-around;
-    align-content: center;
 	flex-wrap: wrap;
+}
+#sectitle{
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	height: 25%;
+	align-items: center;
+	justify-content: center;
 }
 
 .p1{
-	color: #1A202C;
+	color: #486284;
+	text-align: center;
+	font-size: 48px;
+	font-style: normal;
 	font-weight: 500;
-
+	line-height: 150%;
+	letter-spacing: -0.96px;
 }
 
 .p2{
-	font-weight: 500;
-	font-size: 16px;
-	opacity: 45%;
+	color:#1A202C;
+	text-align: center;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%;
 }
-
-h1{
-	font-size: 40px;
-	text-transform: uppercase;
-	font-weight: 800;
-}
-
-
 
 .ashleave{
     max-width: 565px;
     height: 528px;
 }
 .ourash{
-    display: flex;
-    flex-grow: initial;
-    width: 669px;
-    height: 528px;
-    flex-direction: column;
-    justify-content: center;
-}
-.ourash>p{
-    flex-shrink: 0;
-    color: #1a202c;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
+	display: flex;
+	width: 669px;
+	height: 528px;
+	flex-direction: column;
+	justify-content: center;
+	text-align: start;
+	flex-shrink: 0;
+    color:#1A202C;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%;
 }
 article{
-	width: auto;
+	width: 100%;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	flex-wrap: wrap;
 }
 
 
-section>div>img{
+section>img{
 	width: 100%;
 	height: 100%;
 	object-fit: cover;

@@ -4,6 +4,13 @@
     padding: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
+/*Dark mode*/
+.dark{
+	background-color: #1A202C;
+	transition: 0.5s;
+	color: #FFF;
+}
+
 
 ul{
 	list-style: none;
@@ -13,6 +20,10 @@ ul{
 nav>ul>li{
 	padding: 2vw;
 }
+/*Pone color negro al pasar sobre los links*/
+li>a:hover{
+	color:#000000;
+}
 
 a{
 	color: #FFFFFF;
@@ -20,6 +31,7 @@ a{
 	width: 500;
 	text-decoration: none;
 }
+/*Subraya la página actual*/
 #under{
 	text-decoration: underline;
 }
@@ -54,11 +66,21 @@ nav{
 	align-items: center;
 }
 
-.btnhead{
+body>header>div>nav>.btndm{
 	height: 38px;
 	width: 82px;
 	border-radius: 4px;
 	border: none;
+	background-color: #FFF;
+	color: inherit;
+}
+body.dark>header>div>nav>.btndm{
+	height: 38px;
+	width: 82px;
+	border-radius: 4px;
+	border: none;
+	background-color: #1A202C;
+	color: inherit;
 }
 /* Hasta aquí llega el header*/
 section{
@@ -75,13 +97,15 @@ section{
 	letter-spacing: -2px;
 	color: #486284 ;
 }
-
+.titulo>h1.color{
+	color: #ffffff ;
+}
 .titulo>h2{
 	font-weight: 400;
 	font-size: 18px;
 	margin: 5%;
 	text-align: center;
-	color: #1A202C;
+	color: inherit;
 }
 /*Inicia barra de busqueda por tipos*/
 .titulo{
@@ -99,21 +123,20 @@ section{
 	border-bottom-style: solid;
 	border-width: 3px;
 }
-.types>ul:active{
-	padding: 35px;
-	text-align: center;
-	width: 25%;
-	border-bottom: #000000;
+.types>ul>li.active{
+	border-bottom: #667b9c;
 	border-bottom-style: solid;
-	border-width: 4px;
+	border-width: 5px;
+}
+.types>ul>li>a{
+	color: inherit;
+	font-weight: 500;
+	font-size: 22px;
 }
 .types>ul{
 	list-style: none;
 	display: flex;
 	justify-content: space-around;
-	color: #1A202C;
-	font-weight: 500;
-	font-size: 22px;
 	margin: 30px;
 }
 
@@ -124,6 +147,7 @@ section{
 .container-card{
 	align-content: center;
 	display: flex;
+	width: 1440px;
 	justify-content: center;
 	flex-wrap: wrap;
 	margin: auto;
@@ -143,6 +167,7 @@ section{
 	align-items: center;
 	width: 304px;
 	height: 388px;
+	color: #000000;
 }
 .ttldiv{
 	margin: 3%;
@@ -220,16 +245,17 @@ section{
 
 /*Botones mas cartas*/
 .morecards{
+	width: 51%;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 	height: 180px;
 	text-align: end;
-	margin-left: 33%;
+	margin-left: 44%;
 }
 .morecards>button{
 	width: 156px;
-	height: 44px;
+	height: 46px;
 	border-radius: 4px;
 	background: #306BB3;
 	font-size: 16px;
@@ -303,12 +329,13 @@ footer{
 a>i{
 	color: #000000;
 	text-align: center;
-	padding-top:22%;
+	padding-top:23%;
 	width: 34px;
 	height: 34px;
 	border-radius: 50%;
 	background-color: #FFFFFF;
 }
+
 
 li>p{
 	font-size: 20px;
