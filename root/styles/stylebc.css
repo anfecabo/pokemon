@@ -37,7 +37,7 @@ a{
 }
 
 header{
-	position:sticky;
+	
     background-color:#306BB3;
 	width: 100%;
 	height: 2.5%;
@@ -108,6 +108,11 @@ section{
 	color: inherit;
 }
 /*Inicia barra de busqueda por tipos*/
+.types>ul>li.dark .active {
+	border-bottom: inherit;
+	border-bottom-style: solid;
+	border-width: 5px;
+}
 .titulo{
 	padding-top: 4%;
 	display: flex;
@@ -119,12 +124,12 @@ section{
 	text-align: center;
 	padding: 35px;
 	width: 25%;
-	border-bottom: #90A3BF;
+	border-bottom: #a9afb8;
 	border-bottom-style: solid;
 	border-width: 3px;
 }
 .types>ul>li.active{
-	border-bottom: #667b9c;
+	border-bottom: inherit;
 	border-bottom-style: solid;
 	border-width: 5px;
 }
@@ -147,7 +152,7 @@ section{
 .container-card{
 	align-content: center;
 	display: flex;
-	width: 1440px;
+	width: 95%;
 	justify-content: center;
 	flex-wrap: wrap;
 	margin: auto;

@@ -4,6 +4,15 @@
     padding: 0;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
+.dark{
+	background-color: #1A202C;
+	transition: 0.5s;
+	color: #FFF;
+}
+.color{
+	color: #FFFFFF;
+}
+
 body{
 	width: 100%;
 	height: 100%;
@@ -26,6 +35,9 @@ a{
 /*Pone underline el link de la página actual*/
 #under{
 	text-decoration: underline;
+}
+li>a:hover{
+	color:#000000;
 }
 header{
 	position:sticky;
@@ -57,17 +69,21 @@ nav{
 	align-items: center;
 }
 
-button{
+body>header>div>nav>.btndm{
 	height: 38px;
 	width: 82px;
 	border-radius: 4px;
 	border: none;
+	background-color: #FFF;
+	color: inherit;
 }
-
-button>a{
-	color: #306BB3;
-	font-size: 14px;
-	font-weight: 500;
+body.dark>header>div>nav>.btndm{
+	height: 38px;
+	width: 82px;
+	border-radius: 4px;
+	border: none;
+	background-color: #1A202C;
+	color: inherit;
 }
 
 button:hover{
@@ -91,8 +107,17 @@ section{
 	height: 25%;
 	align-items: center;
 	justify-content: center;
+	color: inherit;
 }
-
+.light{
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 48px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 150%;
+	letter-spacing: -0.96px;
+}
 .p1{
 	color: #486284;
 	text-align: center;
@@ -103,8 +128,9 @@ section{
 	letter-spacing: -0.96px;
 }
 
+
 .p2{
-	color:#1A202C;
+	color:inherit;
 	text-align: center;
 	font-size: 18px;
 	font-style: normal;
@@ -124,7 +150,7 @@ section{
 	justify-content: center;
 	text-align: start;
 	flex-shrink: 0;
-    color:#1A202C;
+    color:inherit;
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 400;
@@ -135,6 +161,7 @@ article{
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
+	color: inherit;
 }
 
 
