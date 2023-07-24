@@ -7,7 +7,6 @@
 /*Dark mode*/
 .dark{
 	background-color: #1A202C;
-	transition: 0.5s;
 	color: #FFF;
 }
 
@@ -73,6 +72,7 @@ body>header>div>nav>.btndm{
 	border: none;
 	background-color: #FFF;
 	color: inherit;
+	cursor: pointer;
 }
 body.dark>header>div>nav>.btndm{
 	height: 38px;
@@ -81,6 +81,12 @@ body.dark>header>div>nav>.btndm{
 	border: none;
 	background-color: #1A202C;
 	color: inherit;
+	cursor: pointer;
+}
+.btndm:hover{
+	width: 83px;
+	height: 40px;
+	flex-shrink: 0;
 }
 /* Hasta aquí llega el header*/
 section{
@@ -178,6 +184,7 @@ section{
 	margin: 3%;
 	display: flex;
 	width: 100%;
+	height: 25px;
 	align-items: center;
 	justify-content: space-evenly;
 }
@@ -191,14 +198,21 @@ section{
 	text-align: left;
 	justify-content: left;
 }
-.heart{
+/* .heart{
 	margin-right: 15px;
 	width: 24px;
 	height: 24px;
 	text-align: center;
 	background-image: url(/root/assets/heart.svg);
+	cursor: pointer;
 }
-
+.heart:hover{
+	width: 25px;
+	height: 25px;
+	background-image:radial-gradient(10,0,20,10);
+	
+}
+ */
 .exp{
 	font-size: 20px;
 	text-transform:capitalize;
@@ -246,6 +260,12 @@ section{
 	font-weight: 600;
 	line-height: 150%;
 	letter-spacing: -0.32px;
+	cursor: pointer;
+}
+.buy:hover{
+	width: 119px;
+	height: 46px;
+	background:#367dd4;
 }
 
 /*Botones mas cartas*/
@@ -347,4 +367,66 @@ li>p{
 	font-weight: 600;
 	line-height: 150%;
 	letter-spacing: -0.4px;
+}
+
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  .root label {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: inline-flex;
+	user-select: none;
+	cursor: pointer;
+  }
+  .root .heart {
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+	box-sizing: border-box;
+	position: relative;
+	border-radius: 50%;
+	transition: background-color 200ms ease;
+  }
+  .root .heart:active {
+	background-color: rgba(220, 0, 78, 0.3);
+  }
+  .root .heart .checked {
+	fill: #dc0000;
+	font-display: initial;
+  }
+  .root .heart .unchecked {
+	fill: rgb(10, 10, 10);
+  }
+  .root .cbx {
+	display: none;
+  }
+  .root .cbx:checked + label .checked {
+	display: inline;
+  }
+  .root .cbx:checked + label .unchecked {
+	display: inline;
+  }
+  .hiden{
+	display: none;
+  }
+  .fill{
+	fill: #dc0000;
+  }
+
+  /*Ir arriba*/
+  .ir-arriba{
+  display:none;
+  background-repeat:no-repeat;
+  font-size:40px;
+  color:#306BB3;
+  cursor:pointer;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:2;
 }

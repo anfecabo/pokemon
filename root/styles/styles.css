@@ -6,11 +6,12 @@
 }
 .dark{
 	background-color: #1A202C;
-	transition: 0.5s;
 	color: #FFF;
 }
+
 #light .dark{
 	color: #FFFFFF;
+	
 }
 body{
 	width: 100%;
@@ -75,6 +76,7 @@ body>header>div>nav>.btndm{
 	border: none;
 	background-color: #FFF;
 	color: inherit;
+	cursor: pointer;
 }
 body.dark>header>div>nav>.btndm{
 	height: 38px;
@@ -84,7 +86,6 @@ body.dark>header>div>nav>.btndm{
 	background-color: #1A202C;
 	color: inherit;
 }
-
 
 section{
 	width: 100%;
@@ -131,12 +132,27 @@ article{
 	gap: 15%;
 }
 
-.links>a{
-	color: inherit;
-	font-size: 16px;
+.links>a:hover{
+	color:#5e5f62;
+	font-size: 17px;
 	font-weight: 600;
 	display: flex;
 	justify-content: center;
+}
+.links>a{
+	font-size: 16px;
+	font-weight: 600;
+	display: flex;
+	width: 160px;
+	height: 48.385px;
+	padding: 0px 20px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	flex-shrink: 0;
+	color: #1A202C;
+	border-radius: 4px;
+	background: #FFF;
 }
 
 #ash1{
@@ -207,5 +223,5 @@ li>p{
 	font-size: 20px;
 	font-weight: 600;
 	line-height: 150%;
-	letter-spacing: -0.4px;
+	letter-spacing: -0.5px;
 }

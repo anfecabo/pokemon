@@ -1,13 +1,14 @@
 //Variable para aumentar el número de cartas
 let offset = 0;
 let data = [];
-//Define el lugar donde se pintaran las cartas en el HTML
+let fav = [];
 
 //Consulta la API, crea Json y proporciona los datos para crear la carta
 async function fetchPokemon(id) {
-    data = [];
+    
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
      data = await res.json();
+    //  console.log(data);
     createcard(data);
 }
 
@@ -20,7 +21,7 @@ async function fetchPokemons(){
         await fetchPokemon(i);
     }
 }
-
+//Identifica los Pokémons po tipo y permite que el botón "Agregar mas" agregue del mismo tipo consultado.
 async function fetchPokemonByType(type){
     data = [];
     const res = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
@@ -29,6 +30,7 @@ async function fetchPokemonByType(type){
 }
 async function fetchPokemonsType(data){
 const max = data.length;
+console.log(data);
 const from = 1 + offset;
 let to = 20 + offset;
 if (to > max){
@@ -40,7 +42,7 @@ data[i-1].pokemon.name
 }
 
 }
-//Cuenta cuantas cartas hay en pantalla
+//Muestra cuantas cartas hay en pantalla
 function numberOfCards(){
     const numCards = document.querySelectorAll('.pokemon-block').length
     const cantidad = document.querySelector('.morec');
@@ -59,20 +61,28 @@ function createcard(pokemon){
 
     const name = document.createElement('p');
     name.classList.add('name');
-    name.textContent = pokemon.name
+    name.textContent = pokemon.name;
 
-    const heart = document.createElement('icon');
-    heart.classList.add('heart')
-
+    const heart = document.createElement('div');
+    heart.classList.add('root');
+    heart.innerHTML = `
+    <label id="cbx${pokemon.id.toString()}" onclick="hiden(${pokemon.id.toString()})">
+      <span class="heart" >
+        <svg class="unchecked" id="unchecked${pokemon.id.toString()}" viewBox="0 0 24 24">
+          <path 
+            d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"
+          ></path>
+        </svg>
+        <svg class="checked hiden" id="checked${pokemon.id.toString()}"  viewBox="0 0 24 24">
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          ></path>
+        </svg>
+      </span>
+    </label>`;
     const sprite =document.createElement('img');
-    sprite.classList.add('imagen')
-    if (pokemon.sprites.other.dream_world.front_default == null){
-        sprite.src = pokemon.sprites.front_default
-    }
-    else{
-        sprite.src = pokemon.sprites.other.dream_world.front_default
-    }
-    
+    sprite.classList.add('imagen');
+    sprite.src = pokemon.sprites.other['official-artwork'].front_default;
     spriteContainer.appendChild(sprite);
 
     const cardftt = document.createElement('div');
@@ -80,11 +90,11 @@ function createcard(pokemon){
     
     const experience = document.createElement('p');
     experience.classList.add('exp');
-    experience.textContent = pokemon.base_experience
+    experience.textContent = "Exp:"+ pokemon.base_experience;
 
     const btnbuy = document.createElement('button');
     btnbuy.classList.add('buy');
-    btnbuy.innerText ='Buy'
+    btnbuy.innerText ='Buy';
   
     //const number = document.createElement('p');
     //number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
@@ -136,11 +146,32 @@ function addMoreCards(){
 //modo oscuro
 
 function toggleTheme(){
-    //console.log(localStorage.setItem('dark', 'dark'))
+
+    const colorf = document.getElementById("titulo");
+    if(colorf.classList=='color'){
+        document.querySelector('.btndm').innerText = 'Dark Mode';
+        localStorage.removeItem('dark');
+    }else{
+        document.querySelector('.btndm').innerText = 'Light Mode';
+        localStorage.setItem('dark','dark');
+    }
     document.body.classList.toggle('dark');
     document.getElementById("titulo").classList.toggle('color');
-    if ()
-}   
+} 
+function darkMode(){  
+if (localStorage.getItem('dark')==='dark'){
+    document.body.classList.add('dark');
+    document.getElementById("titulo").classList.add('color');
+    document.querySelector('.btndm').innerText = 'Light Mode';
+}else{
+    document.body.classList.remove('dark');
+    document.getElementById("titulo").classList.remove('color');
+    document.querySelector('.btndm').innerText = 'Dark Mode';
+    localStorage.removeItem('dark');
+}
+}
+
+
 
 //Cambia la clase de los botones que se usan para el  filtro por tipos, lipia la plantilla y llama los pokémon del tipo seleccionado
 document.getElementById("all").addEventListener('click', function(ev) {
@@ -148,6 +179,7 @@ document.getElementById("all").addEventListener('click', function(ev) {
     document.getElementById("l2").classList.remove('active');
     document.getElementById("l3").classList.remove('active');
     document.getElementById("l4").classList.remove('active');
+    document.getElementById("l5").classList.remove('active');
     offset = 0;
     let containercard = document.getElementById('container-card');
     containercard.remove();
@@ -163,6 +195,7 @@ document.getElementById("air").addEventListener('click', function(ev) {
     document.getElementById("l2").classList.add('active');
     document.getElementById("l3").classList.remove('active');
     document.getElementById("l4").classList.remove('active');
+    document.getElementById("l5").classList.remove('active');
     offset = 0;
     let containercard = document.getElementById('container-card');
     containercard.remove();
@@ -178,6 +211,7 @@ document.getElementById("fire").addEventListener('click', function(ev) {
     document.getElementById("l2").classList.remove('active');
     document.getElementById("l3").classList.add('active');
     document.getElementById("l4").classList.remove('active');
+    document.getElementById("l5").classList.remove('active');
     offset = 0;
     let containercard = document.getElementById('container-card');
     containercard.remove();
@@ -193,6 +227,7 @@ document.getElementById("water").addEventListener('click', function(ev) {
     document.getElementById("l2").classList.remove('active');
     document.getElementById("l3").classList.remove('active');
     document.getElementById("l4").classList.add('active');
+    document.getElementById("l5").classList.remove('active');
     offset = 0;
     let containercard = document.getElementById('container-card');
     containercard.remove();
@@ -203,3 +238,49 @@ document.getElementById("water").addEventListener('click', function(ev) {
     fetchPokemonByType(11);
 }, false);
 
+document.getElementById("favoritos").addEventListener('click', function(ev) {
+    document.getElementById("l1").classList.remove('active');
+    document.getElementById("l2").classList.remove('active');
+    document.getElementById("l3").classList.remove('active');
+    document.getElementById("l4").classList.remove('active');
+    document.getElementById("l5").classList.add('active');
+    offset = 0;
+    let containercard = document.getElementById('container-card');
+    containercard.remove();
+    containercard = document.createElement('article');
+    containercard.classList.add('container-card');
+    containercard.setAttribute("id", "container-card");
+    document.getElementById('main').appendChild(containercard);
+    fetchFav(fav);
+}, false);
+
+//
+function fetchFav(favoritos){
+    favoritos.forEach(element => {
+        fetchPokemon(element);
+    });  
+}
+
+//Al dar clic en el boton favoritos, cambia la clase del SVG para ocultar o mostrar el color. además crea una lista de los pokemon seleccionados.
+function hiden(id){
+    document.getElementById("unchecked" + id).classList.toggle("hiden");
+    document.getElementById("checked" + id).classList.toggle("hiden");
+    if (document.getElementById("unchecked" + id).classList == "unchecked hiden"){
+        fav.push(id);
+    }
+    else{
+        fav = fav.filter(fav => fav != id );
+    }
+    console.log(fav);
+}
+
+//Ir arriba
+(document).ready(function(){ irArriba(); });
+
+function irArriba(){
+  ('.ir-arriba').click(function(){ $('body,html').animate({ scrollTop:'0px' },1000); });
+  (window).scroll(function(){
+    if($(this).scrollTop() > 0){ $('.ir-arriba').slideDown(600); }else{ $('.ir-arriba').slideUp(600); }
+  });
+  ('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
+}
