@@ -9,7 +9,9 @@
 	background-color: #1A202C;
 	color: #FFF;
 }
-
+.titulo>h1.light{
+	color: #FFFFFF;
+}
 
 ul{
 	list-style: none;

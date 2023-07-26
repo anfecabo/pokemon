@@ -5,68 +5,65 @@ let fav = [];
 
 //Consulta la API, crea Json y proporciona los datos para crear la carta
 async function fetchPokemon(id) {
-    
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-     data = await res.json();
-    //  console.log(data);
-    createcard(data);
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  data = await res.json();
+  //  console.log(data);
+  createcard(data);
 }
-
 
 //Recorre los ID de pokemon para pintarlos uno por uno con un límite de 20
-async function fetchPokemons(){
-    const from = 1 + offset;
-    const to = 20 + offset;
-    for (let i = from; i <= to; i++){
-        await fetchPokemon(i);
-    }
+async function fetchPokemons() {
+  const from = 1 + offset;
+  const to = 20 + offset;
+  for (let i = from; i <= to; i++) {
+    await fetchPokemon(i);
+  }
 }
 //Identifica los Pokémons po tipo y permite que el botón "Agregar mas" agregue del mismo tipo consultado.
-async function fetchPokemonByType(type){
-    data = [];
-    const res = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
-    data = await res.json();
-    fetchPokemonsType(data.pokemon);
+async function fetchPokemonByType(type) {
+  data = [];
+  const res = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
+  data = await res.json();
+  fetchPokemonsType(data.pokemon);
 }
-async function fetchPokemonsType(data){
-const max = data.length;
-console.log(data);
-const from = 1 + offset;
-let to = 20 + offset;
-if (to > max){
+async function fetchPokemonsType(data) {
+  const max = data.length;
+  console.log(data);
+  const from = 1 + offset;
+  let to = 20 + offset;
+  if (to > max) {
     to = max;
-}
-for (let i = from; i <= to; i++){
-data[i-1].pokemon.name
-    await fetchPokemon(data[i-1].pokemon.name);
-}
-
+  }
+  for (let i = from; i <= to; i++) {
+    data[i - 1].pokemon.name;
+    await fetchPokemon(data[i - 1].pokemon.name);
+  }
 }
 //Muestra cuantas cartas hay en pantalla
-function numberOfCards(){
-    const numCards = document.querySelectorAll('.pokemon-block').length
-    const cantidad = document.querySelector('.morec');
-    cantidad.textContent = `${numCards} cards`;
+function numberOfCards() {
+  const numCards = document.querySelectorAll(".pokemon-block").length;
+  const cantidad = document.querySelector(".morec");
+  cantidad.textContent = `${numCards} cards`;
 }
 //crea plantilla para las cartas y al final muestra la cantidad
-function createcard(pokemon){
-    const card = document.createElement('div');
-    card.classList.add('pokemon-block');
+function createcard(pokemon) {
+  const card = document.createElement("div");
+  card.classList.add("pokemon-block");
 
-    const spriteContainer = document.createElement('div');
-    spriteContainer.classList.add('img-div');
+  const spriteContainer = document.createElement("div");
+  spriteContainer.classList.add("img-div");
 
-    const title = document.createElement('div');
-    title.classList.add('ttldiv');
+  const title = document.createElement("div");
+  title.classList.add("ttldiv");
 
-    const name = document.createElement('p');
-    name.classList.add('name');
-    name.textContent = pokemon.name;
+  const name = document.createElement("p");
+  name.classList.add("name");
+  name.textContent = pokemon.name;
 
-    const heart = document.createElement('div');
-    heart.classList.add('root');
-    if(pokemon.id == fav.filter(fav => fav == pokemon.id)){
-        heart.innerHTML = `
+  const heart = document.createElement("div");
+  heart.classList.add("root");
+  if (pokemon.id == fav.filter((fav) => fav == pokemon.id)) {
+    heart.innerHTML = `
     <label id="cbx${pokemon.id.toString()}" onclick="hiden(${pokemon.id.toString()})">
       <span class="heart" >
         <svg class="unchecked hiden" id="unchecked${pokemon.id.toString()}" viewBox="0 0 24 24">
@@ -81,8 +78,8 @@ function createcard(pokemon){
         </svg>
       </span>
     </label>`;
-    }else{
-        heart.innerHTML = `
+  } else {
+    heart.innerHTML = `
     <label id="cbx${pokemon.id.toString()}" onclick="hiden(${pokemon.id.toString()})">
       <span class="heart" >
         <svg class="unchecked" id="unchecked${pokemon.id.toString()}" viewBox="0 0 24 24">
@@ -97,222 +94,216 @@ function createcard(pokemon){
         </svg>
       </span>
     </label>`;
-    }
-    
-    const sprite =document.createElement('img');
-    sprite.classList.add('imagen');
-    sprite.src = pokemon.sprites.other['official-artwork'].front_default;
-    spriteContainer.appendChild(sprite);
+  }
 
-    const cardftt = document.createElement('div');
-    cardftt.classList.add('cardftt');
-    
-    const experience = document.createElement('p');
-    experience.classList.add('exp');
-    experience.textContent = "Exp:"+ pokemon.base_experience;
+  const sprite = document.createElement("img");
+  sprite.classList.add("imagen");
+  sprite.src = pokemon.sprites.other["official-artwork"].front_default;
+  spriteContainer.appendChild(sprite);
 
-    const btnbuy = document.createElement('button');
-    btnbuy.classList.add('buy');
-    btnbuy.innerText ='Buy';
-  
-    //const number = document.createElement('p');
-    //number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
+  const cardftt = document.createElement("div");
+  cardftt.classList.add("cardftt");
 
-    const expcontainer = document.createElement('div');
-    expcontainer.classList.add('exp');
+  const experience = document.createElement("p");
+  experience.classList.add("exp");
+  experience.textContent = "Exp:" + pokemon.base_experience;
 
-    card.appendChild(title);
-    title.appendChild(name);
-    title.appendChild(heart);
-    card.appendChild(spriteContainer);
-    //card.appendChild(number);bvgh
-    card.appendChild(cardftt);
-    cardftt.appendChild(experience);
-    cardftt.appendChild(btnbuy);
-    const containercard =  document.querySelector(".container-card");
+  const btnbuy = document.createElement("button");
+  btnbuy.classList.add("buy");
+  btnbuy.innerText = "Buy";
 
-    containercard.appendChild(card);
+  //const number = document.createElement('p');
+  //number.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
 
-    numberOfCards();
+  const expcontainer = document.createElement("div");
+  expcontainer.classList.add("exp");
+
+  card.appendChild(title);
+  title.appendChild(name);
+  title.appendChild(heart);
+  card.appendChild(spriteContainer);
+  //card.appendChild(number);
+  card.appendChild(cardftt);
+  cardftt.appendChild(experience);
+  cardftt.appendChild(btnbuy);
+  const containercard = document.querySelector(".container-card");
+
+  containercard.appendChild(card);
+
+  numberOfCards();
 }
 // Agrega 20 cartas a la función fetchpokemos y discrimina por tipos
-function addMoreCards(){
-    offset += 20;
-    if (document.getElementById("l1").classList == 'active'){
-        fetchPokemons();
+function addMoreCards() {
+  offset += 20;
+  if (document.getElementById("l1").classList == "active") {
+    fetchPokemons();
+  } else {
+    if (document.getElementById("l2").classList == "active") {
+      fetchPokemonByType(3);
     }
-    else{
-        if (document.getElementById("l2").classList == 'active'){
-        fetchPokemonByType(3);
-        }
-        if (document.getElementById("l3").classList == 'active'){
-            fetchPokemonByType(10);
-        }
-        if (document.getElementById("l4").classList == 'active'){
-            fetchPokemonByType(11);
-            }
+    if (document.getElementById("l3").classList == "active") {
+      fetchPokemonByType(10);
     }
+    if (document.getElementById("l4").classList == "active") {
+      fetchPokemonByType(11);
+    }
+  }
 }
 //Configura el botón ver mas y al final llama a la función fetchpokemos para agregar las cartas.
 (async () => {
-    const btnMore = document.querySelector('#showMore');
-    btnMore.addEventListener('click', addMoreCards);
+  const btnMore = document.querySelector("#showMore");
+  btnMore.addEventListener("click", addMoreCards);
 
-    await fetchPokemons();
+  await fetchPokemons();
 })();
 
-
-//modo oscuro
-
-function toggleTheme(){
-
-    const colorf = document.getElementById("titulo");
-    if(colorf.classList=='color'){
-        document.querySelector('.btndm').innerText = 'Dark Mode';
-        localStorage.removeItem('dark');
-    }else{
-        document.querySelector('.btndm').innerText = 'Light Mode';
-        localStorage.setItem('dark','dark');
-    }
-    document.body.classList.toggle('dark');
-    document.getElementById("titulo").classList.toggle('color');
-} 
-function darkMode(){  
-if (localStorage.getItem('dark')==='dark'){
-    document.body.classList.add('dark');
-    document.getElementById("titulo").classList.add('color');
-    document.querySelector('.btndm').innerText = 'Light Mode';
-}else{
-    document.body.classList.remove('dark');
-    document.getElementById("titulo").classList.remove('color');
-    document.querySelector('.btndm').innerText = 'Dark Mode';
-    localStorage.removeItem('dark');
-}
-}
-
-
-
 //Cambia la clase de los botones que se usan para el  filtro por tipos, lipia la plantilla y llama los pokémon del tipo seleccionado
-document.getElementById("all").addEventListener('click', function(ev) {
-    document.getElementById("l1").classList.add('active');
-    document.getElementById("l2").classList.remove('active');
-    document.getElementById("l3").classList.remove('active');
-    document.getElementById("l4").classList.remove('active');
-    document.getElementById("l5").classList.remove('active');
+document.getElementById("all").addEventListener(
+  "click",
+  function (ev) {
+    document.getElementById("l1").classList.add("active");
+    document.getElementById("l2").classList.remove("active");
+    document.getElementById("l3").classList.remove("active");
+    document.getElementById("l4").classList.remove("active");
+    document.getElementById("l5").classList.remove("active");
     offset = 0;
-    let containercard = document.getElementById('container-card');
+    let containercard = document.getElementById("container-card");
     containercard.remove();
-    containercard = document.createElement('article');
-    containercard.classList.add('container-card');
+    containercard = document.createElement("article");
+    containercard.classList.add("container-card");
     containercard.setAttribute("id", "container-card");
-    document.getElementById('main').appendChild(containercard);
+    document.getElementById("main").appendChild(containercard);
     fetchPokemons();
-}, false);
+  },
+  false
+);
 
-document.getElementById("air").addEventListener('click', function(ev) {
-    document.getElementById("l1").classList.remove('active');
-    document.getElementById("l2").classList.add('active');
-    document.getElementById("l3").classList.remove('active');
-    document.getElementById("l4").classList.remove('active');
-    document.getElementById("l5").classList.remove('active');
+document.getElementById("air").addEventListener(
+  "click",
+  function (ev) {
+    document.getElementById("l1").classList.remove("active");
+    document.getElementById("l2").classList.add("active");
+    document.getElementById("l3").classList.remove("active");
+    document.getElementById("l4").classList.remove("active");
+    document.getElementById("l5").classList.remove("active");
     offset = 0;
-    let containercard = document.getElementById('container-card');
+    let containercard = document.getElementById("container-card");
     containercard.remove();
-    containercard = document.createElement('article');
-    containercard.classList.add('container-card');
+    containercard = document.createElement("article");
+    containercard.classList.add("container-card");
     containercard.setAttribute("id", "container-card");
-    document.getElementById('main').appendChild(containercard);
+    document.getElementById("main").appendChild(containercard);
     fetchPokemonByType(3);
-}, false);
+  },
+  false
+);
 
-document.getElementById("fire").addEventListener('click', function(ev) {
-    document.getElementById("l1").classList.remove('active');
-    document.getElementById("l2").classList.remove('active');
-    document.getElementById("l3").classList.add('active');
-    document.getElementById("l4").classList.remove('active');
-    document.getElementById("l5").classList.remove('active');
+document.getElementById("fire").addEventListener(
+  "click",
+  function (ev) {
+    document.getElementById("l1").classList.remove("active");
+    document.getElementById("l2").classList.remove("active");
+    document.getElementById("l3").classList.add("active");
+    document.getElementById("l4").classList.remove("active");
+    document.getElementById("l5").classList.remove("active");
     offset = 0;
-    let containercard = document.getElementById('container-card');
+    let containercard = document.getElementById("container-card");
     containercard.remove();
-    containercard = document.createElement('article');
-    containercard.classList.add('container-card');
+    containercard = document.createElement("article");
+    containercard.classList.add("container-card");
     containercard.setAttribute("id", "container-card");
-    document.getElementById('main').appendChild(containercard);
+    document.getElementById("main").appendChild(containercard);
     fetchPokemonByType(10);
-}, false);
+  },
+  false
+);
 
-document.getElementById("water").addEventListener('click', function(ev) {
-    document.getElementById("l1").classList.remove('active');
-    document.getElementById("l2").classList.remove('active');
-    document.getElementById("l3").classList.remove('active');
-    document.getElementById("l4").classList.add('active');
-    document.getElementById("l5").classList.remove('active');
+document.getElementById("water").addEventListener(
+  "click",
+  function (ev) {
+    document.getElementById("l1").classList.remove("active");
+    document.getElementById("l2").classList.remove("active");
+    document.getElementById("l3").classList.remove("active");
+    document.getElementById("l4").classList.add("active");
+    document.getElementById("l5").classList.remove("active");
     offset = 0;
-    let containercard = document.getElementById('container-card');
+    let containercard = document.getElementById("container-card");
     containercard.remove();
-    containercard = document.createElement('article');
-    containercard.classList.add('container-card');
+    containercard = document.createElement("article");
+    containercard.classList.add("container-card");
     containercard.setAttribute("id", "container-card");
-    document.getElementById('main').appendChild(containercard);
+    document.getElementById("main").appendChild(containercard);
     fetchPokemonByType(11);
-}, false);
+  },
+  false
+);
 
-document.getElementById("favoritos").addEventListener('click', function(ev) {
-    document.getElementById("l1").classList.remove('active');
-    document.getElementById("l2").classList.remove('active');
-    document.getElementById("l3").classList.remove('active');
-    document.getElementById("l4").classList.remove('active');
-    document.getElementById("l5").classList.add('active');
+document.getElementById("favoritos").addEventListener(
+  "click",
+  function (ev) {
+    document.getElementById("l1").classList.remove("active");
+    document.getElementById("l2").classList.remove("active");
+    document.getElementById("l3").classList.remove("active");
+    document.getElementById("l4").classList.remove("active");
+    document.getElementById("l5").classList.add("active");
     offset = 0;
-    let containercard = document.getElementById('container-card');
+    let containercard = document.getElementById("container-card");
     containercard.remove();
-    containercard = document.createElement('article');
-    containercard.classList.add('container-card');
+    containercard = document.createElement("article");
+    containercard.classList.add("container-card");
     containercard.setAttribute("id", "container-card");
-    document.getElementById('main').appendChild(containercard);
+    document.getElementById("main").appendChild(containercard);
     fetchFav(fav);
-}, false);
+  },
+  false
+);
 
 //
-async function fetchFav(favoritos){
-    await favoritos.forEach(element => {
-         fetchPokemon(element);
-    });  
+async function fetchFav(favoritos) {
+  await favoritos.forEach((element) => {
+    fetchPokemon(element);
+  });
 }
 
 //Al dar clic en el boton favoritos, cambia la clase del SVG para ocultar o mostrar el color. además crea una lista de los pokemon seleccionados.
-function hiden(id){
-    document.getElementById("unchecked" + id).classList.toggle("hiden");
-    document.getElementById("checked" + id).classList.toggle("hiden");
-    if (document.getElementById("unchecked" + id).classList == "unchecked hiden"){
-        fav.push(id);
-        fav = fav.sort(function(a, b){return a - b});
-    }
-    else{
-        fav = fav.filter(fav => fav != id );
-        fav = fav.sort(function(a, b){return a - b});
-    }
-    console.log(fav);
+function hiden(id) {
+  document.getElementById("unchecked" + id).classList.toggle("hiden");
+  document.getElementById("checked" + id).classList.toggle("hiden");
+  if (
+    document.getElementById("unchecked" + id).classList == "unchecked hiden"
+  ) {
+    fav.push(id);
+    fav = fav.sort(function (a, b) {
+      return a - b;
+    });
+  } else {
+    fav = fav.filter((fav) => fav != id);
+    fav = fav.sort(function (a, b) {
+      return a - b;
+    });
+  }
+  console.log(fav);
 }
 
 //Ir arriba
-buttonUp = document.getElementById('goUp')
+buttonUp = document.getElementById("goUp");
 
-buttonUp.addEventListener('click', scrollUp);
+buttonUp.addEventListener("click", scrollUp);
 
-function scrollUp(bu){
-    const courrentScroll = document.documentElement.scrollTop;
-    if (courrentScroll > 0){
-        window.requestAnimationFrame(scrollUp);
-        window.scrollTo(0,courrentScroll-(courrentScroll/10));
-    }
+function scrollUp(bu) {
+  const courrentScroll = document.documentElement.scrollTop;
+  if (courrentScroll > 0) {
+    window.requestAnimationFrame(scrollUp);
+    window.scrollTo(0, courrentScroll - courrentScroll / 10);
+  }
 }
 
-window.onscroll = function(ec){
-    const scroll = document.documentElement.scrollTop;
-    if(scroll > 1200){
-        buttonUp.style.display =('block');
-    } else{
-        buttonUp.style.display =('none');
-    }
-}
+window.onscroll = function (ec) {
+  const scroll = document.documentElement.scrollTop;
+  if (scroll > 1200) {
+    buttonUp.style.transition= "all 300ms ease";
+    buttonUp.style.display = "block";
+  } else {
+    buttonUp.style.display = "none";
+  }
+};
