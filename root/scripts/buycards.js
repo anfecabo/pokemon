@@ -297,13 +297,20 @@ function scrollUp(bu) {
     window.scrollTo(0, courrentScroll - courrentScroll / 10);
   }
 }
+let scroll = 0
+let scrollold = 0
 
 window.onscroll = function (ec) {
-  const scroll = document.documentElement.scrollTop;
-  if (scroll > 1200) {
-    buttonUp.style.transition= "all 300ms ease";
-    buttonUp.style.display = "block";
-  } else {
-    buttonUp.style.display = "none";
+    scroll = document.documentElement.scrollTop;
+  if (scrollold > scroll){
+    scrollold = scroll;
+    if (scroll > 1200) {
+        buttonUp.style.display = "block";
+      } else {
+        buttonUp.style.display = "none";
+      }
+  }else{
+    scrollold = scroll;
   }
+  
 };

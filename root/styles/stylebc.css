@@ -96,8 +96,10 @@ section{
 	justify-content: center;
 	min-width: 100%;
 }
+
 .divmax{
 	min-width: 100%;
+	min-height: 100%;
 }
 .titulo>h1{
 	font-weight: 500;
@@ -365,7 +367,7 @@ section{
 
 footer{
 	height: 383px;
-	margin: auto;
+	margin-top: auto;
     background-color:#306BB3;
 	color: #FFFFFF;
 	display: flex;
@@ -390,6 +392,8 @@ footer{
 	justify-content: space-evenly;
 }
 .div_foot>ul{
+	display: flex;
+	flex-wrap:wrap ;
 	display: inline;
 	height: 244px;
 	width: 152px;
