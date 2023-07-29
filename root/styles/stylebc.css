@@ -86,8 +86,9 @@ body.dark>header>div>nav>.btndm{
 	cursor: pointer;
 }
 .btndm:hover{
-	transform: scale(1.1);
+	transform: scale(1.03);
 	flex-shrink: 0;
+	background-color: #e3e3f1;
 }
 /* Hasta aquí llega el header*/
 section{
@@ -172,8 +173,7 @@ section{
 }
 
 .pokemon-block{
-	margin: 0 24px;
-	margin-bottom: 48px;
+	margin: 1%;
 	border-radius: 10px;
 	border:solid;
 	border-width: 2px;
@@ -253,6 +253,10 @@ section{
   }
   .fill{
 	fill: #dc0000;
+  }
+  .heart:hover{
+  transform: scale(1.05);
+  flex-shrink: 0;
   }
 
 .exp{
@@ -352,8 +356,8 @@ section{
 	font-size:50px;
 	cursor:pointer;
 	position:fixed;
-	bottom:445px;
-	right:40px;
+	bottom:52%;
+	right:2%;
 	color: #306bb395;
 	transition: all 300ms ease;
 	display: none;

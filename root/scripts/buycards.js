@@ -132,6 +132,7 @@ function createcard(pokemon) {
 
   numberOfCards();
 }
+
 // Agrega 20 cartas a la función fetchpokemos y discrimina por tipos
 function addMoreCards() {
   offset += 20;
@@ -297,20 +298,19 @@ function scrollUp(bu) {
     window.scrollTo(0, courrentScroll - courrentScroll / 10);
   }
 }
-let scroll = 0
-let scrollold = 0
+let scroll = 0;
+let scrollold = 0;
 
 window.onscroll = function (ec) {
-    scroll = document.documentElement.scrollTop;
-  if (scrollold > scroll){
+  scroll = document.documentElement.scrollTop;
+  if (scrollold > scroll) {
     scrollold = scroll;
-    if (scroll > 1200) {
-        buttonUp.style.display = "block";
-      } else {
-        buttonUp.style.display = "none";
-      }
-  }else{
+    if (scroll > 252) {
+      buttonUp.style.display = "block";
+    } else {
+      buttonUp.style.display = "none";
+    }
+  } else {
     scrollold = scroll;
   }
-  
 };

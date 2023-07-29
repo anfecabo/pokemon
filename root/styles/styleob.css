@@ -88,6 +88,11 @@ body.dark>header>div>nav>.btndm{
 	color: inherit;
 	cursor: pointer;
 }
+.btndm:hover{
+	transform: scale(1.03);
+	flex-shrink: 0;
+	background-color: #e3e3f1;
+}
 
 
 
