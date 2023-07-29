@@ -283,7 +283,7 @@ function hiden(id) {
       return a - b;
     });
   }
-  console.log(fav);
+  fav;
 }
 
 //Ir arriba
